@@ -67,7 +67,7 @@ namespace Xamarin.Forms.Platform.iOS
 			{
 				if (disposing)
 				{
-					//_itemsSource?.Dispose();
+					_itemsSource?.Dispose();
 				}
 
 				_disposed = true;

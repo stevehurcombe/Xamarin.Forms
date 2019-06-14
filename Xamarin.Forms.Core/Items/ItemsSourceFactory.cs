@@ -18,7 +18,7 @@ namespace Xamarin.Forms
 			switch (itemsSource)
 			{
 				case IList _ when itemsSource is INotifyCollectionChanged:
-					return observableItemsSourceFactory != null ? observableItemsSourceFactory(itemsSource as INotifyCollectionChanged) : new ObservableListSource(itemsSource);
+					return observableItemsSourceFactory != null ? observableItemsSourceFactory(itemsSource as INotifyCollectionChanged) : new ListSource(itemsSource);
 				case IEnumerable<object> generic:
 					return new ListSource(generic);
 			}
@@ -45,16 +45,9 @@ namespace Xamarin.Forms
 				Add(item);
 			}
 		}
-	}
 
-	internal class ObservableListSource : ListSource
-	{
-		public ObservableListSource(IEnumerable enumerable)
+		public void Dispose()
 		{
-			foreach (object item in enumerable)
-			{
-				Add(item);
-			}
 		}
 	}
 
@@ -63,5 +56,9 @@ namespace Xamarin.Forms
 		public int Count => 0;
 
 		public object this[int index] => throw new IndexOutOfRangeException("IItemsViewSource is empty");
+
+		public void Dispose()
+		{
+		}
 	}
 }
