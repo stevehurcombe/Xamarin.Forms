@@ -115,7 +115,7 @@ namespace Xamarin.Forms.Platform.iOS
 		{
 			base.ViewDidLoad();
 			AutomaticallyAdjustsScrollViewInsets = false;
-			RegisterCells();
+			RegisterCellsInternal();
 		}
 
 		public override void ViewWillLayoutSubviews()
@@ -283,7 +283,7 @@ namespace Xamarin.Forms.Platform.iOS
 			return renderer;
 		}
 
-		string DetermineCellReusedId()
+		protected virtual string DetermineCellReusedId()
 		{
 			if (_itemsView.ItemTemplate != null)
 			{
@@ -309,13 +309,18 @@ namespace Xamarin.Forms.Platform.iOS
 			return GetCell(CollectionView, indexPath);
 		}
 
-		void RegisterCells()
+		protected virtual void RegisterCells()
+		{
+		}
+
+		void RegisterCellsInternal()
 		{
 			CollectionView.RegisterClassForCell(typeof(HorizontalDefaultCell), HorizontalDefaultCell.ReuseId);
 			CollectionView.RegisterClassForCell(typeof(VerticalDefaultCell), VerticalDefaultCell.ReuseId);
 			CollectionView.RegisterClassForCell(typeof(HorizontalTemplatedCell),
 				HorizontalTemplatedCell.ReuseId);
 			CollectionView.RegisterClassForCell(typeof(VerticalTemplatedCell), VerticalTemplatedCell.ReuseId);
+			RegisterCells();
 		}
 
 		internal void UpdateEmptyView()
