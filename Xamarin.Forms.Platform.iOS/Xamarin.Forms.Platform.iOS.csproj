@@ -210,7 +210,6 @@
     <Compile Include="Renderers\IButtonLayoutRenderer.cs" />
     <Compile Include="Renderers\SearchHandlerAppearanceTracker.cs" />
     <Compile Include="Renderers\CheckBoxRenderer.cs" />
-    <Compile Include="CollectionView\IndicatorsViewRenderer.cs" />
     <Compile Include="CollectionView\CarouselViewRenderer.cs" />
     <Compile Include="CollectionView\CarouselViewLayout.cs" />
     <Compile Include="CollectionView\CollectionViewRenderer.cs" />
