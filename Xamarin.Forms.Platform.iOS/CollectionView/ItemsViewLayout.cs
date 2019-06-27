@@ -15,9 +15,11 @@ namespace Xamarin.Forms.Platform.iOS
 		bool _disposed;
 		bool _needCellSizeUpdate;
 
-		protected ItemsViewLayout(ItemsLayout itemsLayout)
+		protected ItemsViewLayout(ItemsLayout itemsLayout, ItemSizingStrategy itemSizingStrategy)
 		{
 			Xamarin.Forms.CollectionView.VerifyCollectionViewFlagEnabled(nameof(ItemsViewLayout));
+
+			ItemSizingStrategy = itemSizingStrategy;
 
 			_itemsLayout = itemsLayout;
 			_itemsLayout.PropertyChanged += LayoutOnPropertyChanged;
@@ -61,7 +63,7 @@ namespace Xamarin.Forms.Platform.iOS
 
 		public Func<UICollectionViewCell> GetPrototype { get; set; }
 
-		internal ItemSizingStrategy ItemSizingStrategy { get; set; }
+		internal ItemSizingStrategy ItemSizingStrategy { get; private set; }
 
 		public abstract void ConstrainTo(CGSize size);
 
